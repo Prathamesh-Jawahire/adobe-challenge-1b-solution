@@ -1,4 +1,4 @@
-# approach\_explanation.md
+# Approach Explanation
 
 ## Overview
 
