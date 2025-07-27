@@ -1,0 +1,13 @@
+services:
+  pdf-processor:
+    build: .
+    container_name: pdf-processor
+    volumes:
+      - .\input:/app/input:rw
+      - .\challenge1b_input.json:/app/challenge1b_input.json:ro
+      - .:/app:rw
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONDONTWRITEBYTECODE=1
+      - HF_HUB_OFFLINE=1
+      - TRANSFORMERS_OFFLINE=1
