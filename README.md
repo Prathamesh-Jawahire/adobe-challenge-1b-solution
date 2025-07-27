@@ -44,6 +44,58 @@ This stage matches sections of the document outlines to a task defined by the us
 
 ---
 
+## Quick Start
+
+### Step 1: Clone the Repository
+git clone https://github.com/Prathamesh-Jawahire/adobe-challenge-1b-solution.git
+cd adobe-challenge-1b-solution
+### Step 2: Prepare Your Files
+Create input directory (if not exists)
+mkdir input
+
+Place your PDF files in the input directory
+cp /path/to/your/*.pdf input/
+
+### Step 3: Create Configuration File
+
+Create `challenge1b_input.json` in the project root:
+
+{
+"persona": {
+"role": "Travel Planner"
+},
+"job_to_be_done": {
+"task": "Plan a comprehensive trip to South of France"
+},
+"documents": [
+{"filename": "document1.pdf"},
+{"filename": "document2.pdf"}
+]
+}
+
+### Step 4: Build and Run
+Build Docker image and run (first time will take 10-15 minutes due to model downloads)
+docker-compose up --build
+For subsequent runs (much faster)
+docker-compose up
+
+## Directory Structure
+pdf-processing-pipeline/
+├── input/ # Place your PDF files here
+│ ├── document1.pdf
+│ ├── document2.pdf
+│ └── document1.json # Generated outline files (after processing)
+├── challenge1b_input.json # Configuration file (you create this)
+├── challenge1b_output.json # Main output (generated after processing)
+├── Dockerfile # Docker image definition
+├── docker-compose.yml # Docker Compose configuration
+├── requirements.txt # Python dependencies
+├── round_1A.py # PDF outline extraction
+├── round_1B.py # Semantic analysis
+├── combined.py # Pipeline orchestrator
+├── entrypoint.sh # Container entry point
+└── README.md # This file
+
 ## Technical Highlights
 
 * **Multithreading**: The summarization step in `round_1B.py` uses multithreading to speed up processing, making use of `ThreadPoolExecutor`.
